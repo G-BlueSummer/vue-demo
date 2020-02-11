@@ -2,14 +2,14 @@
   <div class="container">
     <div class="section">
       <ul class="pagination">
-        <li :class="[currentPage===1?'disabled':'waves-effect']">
-          <a @click="subPage"><i class="material-icons">chevron_left</i></a>
+        <li :class="[canPrev?'waves-effect':'disabled']">
+          <a @click="prevPage"><i class="material-icons">chevron_left</i></a>
         </li>
-        <li v-for="i in maxPage" :key="i" :class="[i===currentPage?'active':'waves-effect']">
-          <a>{{i}}</a>
+        <li v-for="i in maxPage" :key="i" :class="{'active':i===currentPage}">
+          <a @click="changePage(i)">{{i}}</a>
         </li>
-        <li :class="[currentPage===maxPage?'disabled':'waves-effect']">
-          <a @click="addPage"><i class="material-icons">chevron_right</i></a>
+        <li :class="[canNext?'waves-effect':'disabled']">
+          <a @click="nextPage"><i class="material-icons">chevron_right</i></a>
         </li>
       </ul>
 
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-const pageSize = 10;
+const pageSize = 8;
 export default {
   data() {
     return {
@@ -34,16 +34,19 @@ export default {
   mounted() {
     this.$axios.get('https://jsonplaceholder.typicode.com/posts')
       .then(r => (this.blogs = r.data))
-      .catch(e => (console.error(e)))
+      .catch(e => (alert(e)))
   },
   computed: {
-    maxPage() { return this.blogs.length / pageSize },
+    maxPage() { return Math.ceil(this.blogs.length / pageSize) },
     start() { return (this.currentPage - 1) * pageSize },
     end() { return this.currentPage * pageSize },
+    canPrev() { return this.currentPage !== 1 },
+    canNext() { return this.currentPage !== this.maxPage },
   },
   methods: {
-    addPage() { if (this.currentPage !== this.maxPage) this.currentPage++ },
-    subPage() { if (this.currentPage !== 1) this.currentPage-- },
+    changePage(n) { this.currentPage = n },
+    prevPage() { if (this.canPrev) this.currentPage-- },
+    nextPage() { if (this.canNext) this.currentPage++ },
   }
 }
 </script>
