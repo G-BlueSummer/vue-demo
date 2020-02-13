@@ -39,8 +39,9 @@ export default {
   },
   mounted() {
     this.$axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then( r => { this.blogs = r.data; this.loading = false } )
-      .catch( e => { alert(e) } )
+      .then( r => this.blogs = r.data )
+      .catch( e => alert(e) )
+      .finally( () => this.loading = false )
   },
   computed: {
     maxPage() { return Math.ceil(this.blogs.length / pageSize) },
