@@ -17,12 +17,12 @@
           </li>
         </ul>
       
-        <ul class="collection">
-          <li class="collection-item" v-for="blog in blogs.slice(start, end)" :key="blog.id">
-            <h4>{{blog.title}}</h4>
+        <div class="card hoverable" v-for="blog in blogs.slice(start, end)" :key="blog.id">
+          <div class="card-content">
+            <span class="card-title">{{blog.title}}</span>
             <p>{{users[blog.userId-1].name}}</p>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
