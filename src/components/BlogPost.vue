@@ -20,6 +20,7 @@
         <ul class="collection">
           <li class="collection-item" v-for="blog in blogs.slice(start, end)" :key="blog.id">
             <h4>{{blog.title}}</h4>
+            <p>{{users[blog.userId-1].name}}</p>
           </li>
         </ul>
       </div>
@@ -33,15 +34,21 @@ export default {
   data() {
     return {
       blogs: [],
+      users: [],
       currentPage: 1,
-      loading: true,
+      loading1: true,
+      loading2: true,
     }
   },
   mounted() {
+    this.$axios.get('http://jsonplaceholder.typicode.com/users')
+      .then( r => this.users = r.data)
+      .catch( e => alert(e) )
+      .finally( () => this.loading1 = false )
     this.$axios.get('https://jsonplaceholder.typicode.com/posts')
       .then( r => this.blogs = r.data )
       .catch( e => alert(e) )
-      .finally( () => this.loading = false )
+      .finally( () => this.loading2 = false )
   },
   computed: {
     maxPage() { return Math.ceil(this.blogs.length / pageSize) },
@@ -49,6 +56,7 @@ export default {
     end() { return this.currentPage * pageSize },
     canPrev() { return this.currentPage !== 1 },
     canNext() { return this.currentPage !== this.maxPage },
+    loading() { return this.loading1 || this.loading2 }
   },
   methods: {
     changePage(n) { this.currentPage = n },
