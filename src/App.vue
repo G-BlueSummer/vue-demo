@@ -1,21 +1,21 @@
 <template>
   <div id="app">
     <NavBar></NavBar>
-    <BlogPost></BlogPost>
+    <PostList></PostList>
     <Footer></Footer>
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue'
-import BlogPost from './components/BlogPost.vue'
+import PostList from './components/PostList.vue'
 import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     NavBar,
-    BlogPost,
+    PostList,
     Footer,
   }
 }
