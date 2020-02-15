@@ -25,6 +25,12 @@
         </div>
       </div>
     </div>
+    
+    <div class="fixed-action-btn">
+      <router-link to="/add" class="btn-floating btn-large">
+        <i class="large material-icons">mode_edit</i>
+      </router-link>
+    </div>
   </div>
 </template>
 

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueRouter from 'vue-router'
+import routes from './route'
 
 import 'materialize-css/dist/css/materialize.min.css'
 import 'material-design-icons/iconfont/material-icons.css'
@@ -10,8 +12,14 @@ const axios = require('axios');
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 
-M.AutoInit();
+Vue.use(VueRouter);
+const router = new VueRouter({
+  routes
+})
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
+
+M.AutoInit();
