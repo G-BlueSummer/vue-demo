@@ -1,10 +1,10 @@
-import PostList from './components/PostList.vue'
+import ListPost from './components/ListPost.vue'
 import AddPost from './components/AddPost.vue'
 
 export default [
     {
         path: '/',
-        component: PostList
+        component: ListPost
     },
     {
         path: '/add',
