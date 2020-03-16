@@ -42,27 +42,27 @@ export default {
       blogs: [],
       users: [],
       currentPage: 1,
-      loading1: true,
-      loading2: true,
+      loading: true,
     }
   },
   mounted() {
-    this.$axios.get('http://jsonplaceholder.typicode.com/users')
-      .then( r => this.users = r.data)
+    const axios = this.$axios;
+    axios.all([
+      axios.get('http://jsonplaceholder.typicode.com/users'),
+      axios.get('http://jsonplaceholder.typicode.com/posts'),
+      ])
+      .then(axios.spread(
+        (users, posts)=>{ this.blogs=posts.data; this.users=users.data; }
+        ))
       .catch( e => alert(e) )
-      .finally( () => this.loading1 = false )
-    this.$axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then( r => this.blogs = r.data )
-      .catch( e => alert(e) )
-      .finally( () => this.loading2 = false )
+      .finally( () => this.loading = false )
   },
   computed: {
     maxPage() { return Math.ceil(this.blogs.length / pageSize) },
     start() { return (this.currentPage - 1) * pageSize },
     end() { return this.currentPage * pageSize },
     canPrev() { return this.currentPage !== 1 },
-    canNext() { return this.currentPage !== this.maxPage },
-    loading() { return this.loading1 || this.loading2 }
+    canNext() { return this.currentPage !== this.maxPage }
   },
   methods: {
     changePage(n) { this.currentPage = n },
