@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import ListPost from '@/components/ListPost.vue'
-import AddPost from '@/components/AddPost.vue'
+import ListPost from '@/views/ListPost.vue'
+import AddPost from '@/views/AddPost.vue'
 
 Vue.use(VueRouter);
 
