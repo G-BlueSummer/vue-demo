@@ -1,54 +1,43 @@
 <template>
-  <div>
-    <NavBar/>
-    <div class="container">
-      <div class="section">
-        <div class="progress" v-if="loading">
-            <div class="indeterminate"></div>
-        </div>
-        <div v-else>
-          <ul class="pagination">
-            <li :class="[canPrev?'waves-effect':'disabled']">
-              <a @click="prevPage"><i class="material-icons">chevron_left</i></a>
-            </li>
-            <li v-for="i in maxPage" :key="i" :class="[i===currentPage?'active':'waves-effect']">
-              <a @click="changePage(i)">{{i}}</a>
-            </li>
-            <li :class="[canNext?'waves-effect':'disabled']">
-              <a @click="nextPage"><i class="material-icons">chevron_right</i></a>
-            </li>
-          </ul>
-        
-          <div class="card hoverable" v-for="blog in blogs.slice(start, end)" :key="blog.id">
-            <div class="card-content">
-              <span class="card-title">{{blog.title}}</span>
-              <p>{{users[blog.userId-1].name}}</p>
-            </div>
+  <div class="container">
+    <div class="section">
+      <div class="progress" v-if="loading">
+          <div class="indeterminate"></div>
+      </div>
+      <div v-else>
+        <ul class="pagination">
+          <li :class="[canPrev?'waves-effect':'disabled']">
+            <a @click="prevPage"><i class="material-icons">chevron_left</i></a>
+          </li>
+          <li v-for="i in maxPage" :key="i" :class="[i===currentPage?'active':'waves-effect']">
+            <a @click="changePage(i)">{{i}}</a>
+          </li>
+          <li :class="[canNext?'waves-effect':'disabled']">
+            <a @click="nextPage"><i class="material-icons">chevron_right</i></a>
+          </li>
+        </ul>
+      
+        <div class="card hoverable" v-for="blog in blogs.slice(start, end)" :key="blog.id">
+          <div class="card-content">
+            <span class="card-title">{{blog.title}}</span>
+            <p>{{users[blog.userId-1].name}}</p>
           </div>
         </div>
       </div>
-      
-      <div class="fixed-action-btn">
-        <router-link to="/add" class="btn-floating btn-large">
-          <i class="large material-icons">mode_edit</i>
-        </router-link>
-      </div>
     </div>
-    <Footer/>
+    
+    <div class="fixed-action-btn">
+      <router-link to="/add" class="btn-floating btn-large">
+        <i class="large material-icons">mode_edit</i>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
-import Footer from '@/components/Footer.vue'
-
 const pageSize = 8;
 export default {
   name: 'ListPost',
-  components: {
-    NavBar,
-    Footer
-  },
   data() {
     return {
       blogs: [],
