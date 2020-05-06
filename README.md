@@ -5,32 +5,11 @@
 - CSS: [Materialize](materializecss.com)
 - 后端接口: [JSONPlaceholder](jsonplaceholder.typicode.com)
 
+新增对Docker的支持
+- 开发环境: Dockerfile.dev
+- 生产环境: Dockerfile
+
 ### 功能完成
 - [x] 浏览
 - [x] 新建
 - [ ] 详情
-
----
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
