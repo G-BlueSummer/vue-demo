@@ -1,3 +1,4 @@
+# 生产环境镜像
 FROM node:lts-slim AS builder
 
 WORKDIR /usr/src/app

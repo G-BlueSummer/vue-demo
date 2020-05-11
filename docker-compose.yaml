@@ -1,7 +1,12 @@
+# 此文件将用于开发环境
 version: '3'
 services: 
     web:
-        build: .
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
         ports: 
-            - 80:80
-            - 443:443
+            - 8080:8080
+        volumes: 
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
