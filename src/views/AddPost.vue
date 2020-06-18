@@ -1,24 +1,22 @@
 <template>
-  <div class="container">
-    <div class="section">
-      <h1>New Blog</h1>
-      <form @submit.prevent="post">
-        <md-field>
-          <md-input id="title" v-model.lazy.trim="title" />
-          <label for="title">Title</label>
-        </md-field>
-        <md-field>
-          <md-textarea id="content" class="materialize-textarea" v-model="content"></md-textarea>
-          <label for="content">Body</label>
-        </md-field>
-        <md-card v-if="showPreview">
-          <md-card-header class="md-title">{{title}}</md-card-header>
-          <md-card-content>{{content}}</md-card-content>
-          <md-button type="submit" class="md-raised md-primary" v-if="!submitting">Create</md-button>
-          <md-progress-spinner md-mode="indeterminate" :md-diameter="30" :md-stroke="3" v-else></md-progress-spinner>
-        </md-card>
-      </form>
-    </div>
+  <div>
+    <h1>New Blog</h1>
+    <form @submit.prevent="post">
+      <md-field>
+        <md-input id="title" v-model.lazy.trim="title" />
+        <label for="title">Title</label>
+      </md-field>
+      <md-field>
+        <md-textarea id="content" class="materialize-textarea" v-model="content"></md-textarea>
+        <label for="content">Body</label>
+      </md-field>
+      <md-card v-if="showPreview">
+        <md-card-header class="md-title">{{title}}</md-card-header>
+        <md-card-content>{{content}}</md-card-content>
+        <md-button type="submit" class="md-raised md-primary" v-if="!submitting">Create</md-button>
+        <md-progress-spinner md-mode="indeterminate" :md-diameter="30" :md-stroke="3" v-else></md-progress-spinner>
+      </md-card>
+    </form>
   </div>
 </template>
 

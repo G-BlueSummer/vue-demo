@@ -1,26 +1,24 @@
 <template>
-  <div class="container">
-    <div class="section">
-      <md-progress-bar md-mode="indeterminate" v-if="loading"></md-progress-bar>
-      <div v-else>
-        <md-button :disabled="!canPrev" @click="prevPage" class="md-icon-button md-primary">
-          <md-icon>chevron_left</md-icon>
-        </md-button>
-        <md-button v-for="i in maxPage" :key="-i" :disabled="i===currentPage"
-          @click="changePage(i)" class="md-icon-button md-primary">
-          {{i}}
-        </md-button>
-        <md-button :disabled="!canNext" @click="nextPage" class="md-icon-button md-primary">
-          <md-icon>chevron_right</md-icon>
-        </md-button>
+  <div>
+    <md-progress-bar md-mode="indeterminate" v-if="loading"></md-progress-bar>
+    <div v-else>
+      <md-button :disabled="!canPrev" @click="prevPage" class="md-icon-button md-primary">
+        <md-icon>chevron_left</md-icon>
+      </md-button>
+      <md-button v-for="i in maxPage" :key="-i" :disabled="i===currentPage" @click="changePage(i)"
+        class="md-icon-button md-primary">
+        {{i}}
+      </md-button>
+      <md-button :disabled="!canNext" @click="nextPage" class="md-icon-button md-primary">
+        <md-icon>chevron_right</md-icon>
+      </md-button>
 
-        <md-card md-with-hover v-for="blog in blogs.slice(start, end)" :key="blog.id">
-          <md-card-header>
-            <div class="md-title">{{blog.title}}</div>
-            <p>{{users[blog.userId-1].name}}</p>
-          </md-card-header>
-        </md-card>
-      </div>
+      <md-card md-with-hover v-for="blog in blogs.slice(start, end)" :key="blog.id">
+        <md-card-header>
+          <div class="md-title">{{blog.title}}</div>
+          <p>{{users[blog.userId-1].name}}</p>
+        </md-card-header>
+      </md-card>
     </div>
   </div>
 </template>
