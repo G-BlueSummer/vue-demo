@@ -11,7 +11,7 @@
           <label for="content">Body</label>
         </md-field>
         <md-card v-if="showPreview">
-          <md-card-header>{{title}}</md-card-header>
+          <md-card-header class="md-title">{{title}}</md-card-header>
           <md-card-content>{{content}}</md-card-content>
           <md-button type="submit" class="md-primary" v-if="!submitting">Create</md-button>
           <md-progress-spinner md-mode="indeterminate" :md-diameter="30" :md-stroke="3" v-else></md-progress-spinner>

@@ -63,7 +63,7 @@
 
 <style lang="scss" scoped>
   .md-app {
-    // max-height: 400px;
+    max-height: 100vh;
     border: 1px solid rgba(#000, .12);
   }
 
