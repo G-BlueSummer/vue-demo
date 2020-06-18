@@ -3,14 +3,14 @@
     <div class="section">
       <md-progress-bar md-mode="indeterminate" v-if="loading"></md-progress-bar>
       <div v-else>
-        <md-button :disabled="!canPrev" @click="prevPage">
+        <md-button :disabled="!canPrev" @click="prevPage" class="md-icon-button">
           <md-icon>chevron_left</md-icon>
         </md-button>
-        <md-button v-for="i in maxPage" :key="-i" :class="[i===currentPage?'active':'waves-effect']"
-          @click="changePage(i)">
+        <md-button v-for="i in maxPage" :key="-i" :disabled="i===currentPage"
+          @click="changePage(i)" class="md-icon-button md-primary">
           {{i}}
         </md-button>
-        <md-button :disabled="!canNext" @click="nextPage">
+        <md-button :disabled="!canNext" @click="nextPage" class="md-icon-button">
           <md-icon>chevron_right</md-icon>
         </md-button>
 
